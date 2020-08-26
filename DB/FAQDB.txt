@@ -1,0 +1,34 @@
+ create table qnaboard(
+ bno number primary key,
+ title varchar2(100) not null,
+ content varchar2(3000) not null,
+ writer varchar2(21) not null,
+ viewcnt number default 0,
+ regDate date default sysdate,
+ updateDate date default sysdate
+ );
+ 
+ create table noticeboard(
+ bno number primary key,
+ title varchar2(100),
+ content varchar2(3000),
+ writer varchar2(21) not null,
+ viewcnt number default 0,
+ regDate date default sysdate,
+ updateDate date default sysdate
+ );
+ 
+create table qnaboardreply(
+rno number primary key,
+bno number not null,
+replyer varchar2(22),
+replytext varchar2(3000),
+regDate date default sysdate,
+updatedate date default sysdate
+);
+
+alter table qnaboardreply add constraint fk_bno foreign key(bno)
+references qnaboard(bno);
+ 
+ 
+ 

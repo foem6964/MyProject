@@ -1,0 +1,6 @@
+create table admin(
+id varchar2(22),
+pw varchar2(22)
+);
+
+insert into admin(id,pw) values ('admin','admin');

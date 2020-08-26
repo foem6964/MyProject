@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b.o.a">
+
+   	<select id="getBno" resultType="Integer">
+		<![CDATA[select max(bno) from qnaboard]]>
+	</select>
+	<insert id="insert">
+	<![CDATA[insert into qnaboard (bno,title,content,writer)
+	values (#{bno},#{title},#{content},#{writer})]]>
+	</insert>
+
+	<select id="getAmount" resultType="Integer">
+		<![CDATA[select count(bno) from qnaboard]]>
+	</select>
+	<select id="list" resultType="QnABoardVO">
+	<![CDATA[select *from qnaboard order by bno desc]]>
+	
+	</select>
+
+	<select id="read" resultType="QnABoardVO">
+	<![CDATA[select *from qnaboard where bno = #{bno}]]>
+	</select>
+	<update id="update">
+	<![CDATA[update qnaboard set title = #{title},writer=#{writer},content=#{content},updatedate = sysdate
+	where bno = #{bno}]]>
+	</update>
+	<select id="updateUI" resultType="QnABoardVO">
+	<![CDATA[select *from qnaboard where bno = #{bno}]]>
+	</select>
+	<update id="increaseViewcnt">
+		<![CDATA[update qnaboard set viewcnt = viewcnt+1 where bno = #{bno}]]>
+	</update>
+	<delete id="delete">
+	<![CDATA[delete from qnaboard where bno = #{bno}]]>
+	
+	</delete>
+	<sql id="search">							<!-- search는 이방법이 좋음 -->
+		<if test="searchType != null">
+			<if test="searchType == 'writer'.toString()">
+				where lower(writer) like '%'||lower(#{keyword})||'%'
+			</if>
+			<if test="searchType == 'title'.toString()">
+				where lower(title) like '%'||lower(#{keyword})||'%'
+			</if>
+			<if test="searchType == 'content'.toString()">
+				where lower(content) like '%'||lower(#{keyword})||'%'
+			</if>
+		</if>
+	
+	</sql>
+		<select id="searchlist" resultType="QnABoardVO">
+		<![CDATA[select *from qnaboard ]]>
+		<include refid="search"></include>
+	</select>
+	<select id="searchlist2" resultType="QnABoardVO">
+	<![CDATA[select *from qnaboard where lower(${searchType}) like '%'||lower(#{keyword})||'%']]>
+	
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,20 @@
+create table Product(
+p_no number primary key,
+pName varchar(120) not null,
+text varchar(1000),
+pImage varchar(120) not null,
+sellerNick varchar(120) not null,
+seller varchar(120) not null,
+salePrice varchar(120) not null,
+delivery varchar(120),
+buySatisfy number(4),
+discount varchar(120),
+mileage varchar(120),
+Invntry varchar(120)
+);
+
+create table Product_img(
+i_no number primary key,
+p_no number,
+imgAdr varchar(120)
+);

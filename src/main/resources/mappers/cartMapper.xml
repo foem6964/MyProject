@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c.r.t">
+
+	<select id="list" resultType="CartDTO">
+		select * from cart where u_no = #{u_no}
+	</select>
+	
+	<select id="getC_no" resultType="Integer">
+		select NVL2(max(c_no),max(c_no)+1, 1) from cart
+	</select>
+	
+	<insert id="insert">
+		<![CDATA[
+		insert into cart (
+		c_no, pName, pPrice, pImage, sellerNick,
+		seller, detailPageUrl, salePrice, delivery, 
+		buySatisfy, discount, mileage, u_no, count) 
+		values (
+		#{c_no}, #{pName}, #{pPrice}, #{pImage}, #{sellerNick},
+		#{seller}, #{detailPageUrl},#{salePrice}, #{delivery},
+		#{buySatisfy}, #{discount}, #{mileage}, #{u_no}, #{count})
+		]]>
+	</insert>
+
+	<update id="update">
+		<![CDATA[
+		update cart set count = #{count} where c_no = #{c_no} and u_no= #{u_no}
+		]]>
+	</update>
+
+	<delete id="delete">
+		delete from cart where u_no=#{u_no} and c_no =#{c_no}
+	</delete>
+
+</mapper>

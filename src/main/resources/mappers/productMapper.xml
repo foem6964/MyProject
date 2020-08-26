@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p.d.t">
+
+	<select id="selectByPno" resultType="ProductDTO">
+		select * from Product where
+		p_no=#{p_no}
+	</select>
+
+	<select id="selectListByPno" resultType="ProductImgDTO">
+		select * from
+		Product_img where p_no=#{p_no}
+	</select>
+	
+	<select id="getP_no" resultType="Integer">
+		select NVL2(max(p_no),max(p_no)+1, 1) from Product
+	</select>
+	
+	<select id="getI_no" resultType="Integer">
+		select NVL2(max(i_no),max(i_no)+1, 1) from Product_img
+	</select>
+	
+	<insert id="insertProduct">
+		<![CDATA[
+		insert into Product(p_no, pName, pPrice, detailText, sellerNick,
+		seller, detailPageUrl, salePrice, delivery, 
+		buySatisfy, discount, mileage, Invntry) values (#{p_no}, #{pName}, #{pPrice}, #{detailText}, #{sellerNick},
+		#{seller}, #{detailPageUrl},#{salePrice}, #{delivery},
+		#{buySatisfy}, #{discount}, #{mileage}, #{Invntry})
+		]]>
+	</insert>
+
+	<insert id="insertProductImg">
+		<![CDATA[
+		insert into Product(i_no, p_no, imgAdr) values (#{i_no}, #{p_no}, #{imgAdr})
+		]]>
+	</insert>
+
+</mapper>

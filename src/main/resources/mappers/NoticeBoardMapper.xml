@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b.a.o">
+
+   	<select id="getBno" resultType="Integer">
+		<![CDATA[select max(bno) from noticeboard]]>
+	</select>
+	<insert id="insert">
+	<![CDATA[insert into noticeboard (bno,title,content,writer)
+	values (#{bno},#{title},#{content},#{writer})]]>
+	</insert>
+	<select id="getAmount" resultType="Integer">
+		<![CDATA[select count(bno) from noticeboard]]>
+	</select>
+	<select id="list" resultType="NoticeBoardVO">
+	<![CDATA[select *from noticeboard order by bno desc]]>
+	
+	</select>
+	<select id="read" resultType="NoticeBoardVO">
+	<![CDATA[select *from noticeboard where bno = #{bno}]]>
+	</select>
+	<update id="update">
+	<![CDATA[update noticeboard set title = #{title},writer=#{writer},content=#{content},updatedate = sysdate
+	where bno = #{bno}]]>
+	</update>
+	<select id="updateUI" resultType="NoticeBoardVO">
+	<![CDATA[select *from noticeboard where bno = #{bno}]]>
+	</select>
+	<update id="increaseViewcnt">
+		<![CDATA[update noticeboard set viewcnt = viewcnt+1 where bno = #{bno}]]>
+	</update>
+	<delete id="delete">
+	<![CDATA[delete from noticeboard where bno = #{bno}]]>
+	
+	</delete>
+	
+		
+	
+  	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

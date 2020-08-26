@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users.domain">
+
+	<select id="read" resultType="kr.co.domain.UsersDTO">
+		select * from users where id = #{id}
+	</select>
+
+	<insert id="create">
+		insert into users(u_no,id) values (#{u_no},#{id})
+	</insert>
+
+	<update id="updateName">
+		update users set name = #{name},address = #{address} where u_no = #{u_no}
+	</update>
+	
+	<select id="getU_noById" resultType="Integer">
+		select u_no from users where id = #{id}
+	</select>
+	
+	<select id="getUno" resultType="Integer">
+		select NVL2(max(u_no),max(u_no)+1, 1) from users
+	</select>
+	
+	<select id="login_post" resultType="AdminDTO">
+  	select *from admin where id = #{id} and pw = #{pw}
+  	</select>
+  	<select id="login" resultType="AdminDTO">
+  	select *from admin where id = #{id} and pw = #{pw}
+  	</select>
+</mapper>

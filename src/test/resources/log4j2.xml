@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+ 
+ <!-- Appender, Layout 설정 -->
+ <Appenders>
+  <Console name="Console" target="SYSTEM_OUT">
+   <PatternLayout/>
+  </Console>
+  <File name="file" fileName="./logs/file/sample.log" append="false">
+   <PatternLayout pattern="%d %5p [%c] %m%n"/>
+  </File>
+ </Appenders>
+ 
+ <!-- Logger 설정 -->
+ <Loggers>
+  <Root level="ERROR" additivity="false">
+   <AppenderRef ref="console"/>
+  </Root>
+  <Logger name="kr.co.ca" level="DEBUG" additivity="false">
+   <AppenderRef ref="console"/>
+   <AppenderRef ref="file"/>
+  </Logger>
+ </Loggers>
+ 
+</Configuration>

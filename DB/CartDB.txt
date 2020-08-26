@@ -1,0 +1,16 @@
+create table cart(
+c_no number primary key,
+pName varchar(120),
+pPrice varchar(120),
+pImage varchar(120),
+sellerNick varchar(120),
+seller varchar(120),
+detailPageUrl varchar(120),
+salePrice varchar(120),
+delivery varchar(120),
+buySatisfy varchar(120),
+discount varchar(120),
+mileage varchar(120),
+u_no varchar(120),
+count varchar(120)
+);

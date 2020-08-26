@@ -1,0 +1,6 @@
+create table users(
+u_no number primary key,
+id varchar2(120) UNIQUE NOT NULL,
+name varchar2(90),
+address varchar2(1000)
+);
